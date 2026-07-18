@@ -641,7 +641,7 @@ export default function Home() {
                     </div>
                     <div className="contact-detail">
                       <span>Email</span>
-                      <a href="mailto:abemelek@enqopazyon.dev">abemelek@enqopazyon.dev</a>
+                      <a href="mailto:enqopazyon@gmail.com">enqopazyon@gmail.com</a>
                     </div>
                   </div>
 
