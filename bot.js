@@ -30,18 +30,19 @@ if (!botToken) {
 
 console.log(`Starting ENQOPAZYON {dev} Telegram Bot Concierge...`);
 
-// Bind a web port for Render health checks and Web Service deployment
-const PORT = process.env.PORT || 10000;
-const server = http.createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('ENQOPAZYON Telegram Bot is Alive and running!\n');
-});
-server.on('error', (err) => {
-    console.log(`[HTTP Server] Port ${PORT} already in use. Skipping server bind (running concurrently with Next.js).`);
-});
-server.listen(PORT, () => {
-    console.log(`HTTP Server bound successfully on port ${PORT} for Render health checks.`);
-});
+// Bind a web port for Render health checks ONLY if running in STANDALONE_BOT mode
+if (process.env.STANDALONE_BOT === 'true') {
+    const PORT = process.env.PORT || 10000;
+    const server = http.createServer((req, res) => {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('ENQOPAZYON Telegram Bot is Alive and running!\n');
+    });
+    server.listen(PORT, () => {
+        console.log(`HTTP Server bound successfully on port ${PORT} for Render health checks.`);
+    });
+} else {
+    console.log("Running in concurrent mode. Web server skipped to let Next.js bind to the port.");
+}
 
 // Robust HTTPS Request Wrapper (solves native fetch IPv6 resolve errors on Windows)
 const telegramApi = (method, body = {}) => {
