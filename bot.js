@@ -36,6 +36,9 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('ENQOPAZYON Telegram Bot is Alive and running!\n');
 });
+server.on('error', (err) => {
+    console.log(`[HTTP Server] Port ${PORT} already in use. Skipping server bind (running concurrently with Next.js).`);
+});
 server.listen(PORT, () => {
     console.log(`HTTP Server bound successfully on port ${PORT} for Render health checks.`);
 });
