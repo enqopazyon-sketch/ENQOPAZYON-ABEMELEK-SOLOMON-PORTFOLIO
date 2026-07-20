@@ -153,7 +153,7 @@ const sendWebsitePackages = async (chatId) => {
 
 🥉 *Tier 1: Basic Package (ዲጂታል ሜኑ እና አድራሻ)*
 • _ዋጋ (Price):_ *18,000 – 25,000 ETB*
-• _የሚካተቱ ነገሮች (Included):_ Landing Page (One-page website), Google Maps አድራሻ፣ የስራ ሰዓት፣ Static Digital Menu (የጁስ/ምግብ ዝርዝር በጽሑፍ/ፎቶ)፣ Mobile Responsive UX፣ የማህበራዊ ሚዲያ (TikTok, Telegram) ማገናኛ。
+• _የሚካተቱ ነገሮች (Included):_ Landing Page (One-page website), Google Maps አድራሻ፣ የስራ ሰዓት፣ Static Digital Menu (የጁስ/ምግብ ዝርዝር በጽሑፍ/ፎቶ)፣ Mobile Responsive UX፣ የማህበራዊ ሚዲያ (TikTok, Telegram) ማገናኛ።
 • _የማይካተቱ (Not Included):_ CMS Admin Panel, Table reservation, Domain & Hosting.
 
 🥈 *Tier 2: Standard Package (Growth)*
@@ -164,12 +164,7 @@ const sendWebsitePackages = async (chatId) => {
 🥇 *Tier 3: Advanced/Premium (Online System)*
 • _ዋጋ (Price):_ *75,000 – 120,000+ ETB*
 • _የሚካተቱ ነገሮች (Included):_ Online Ordering System, Telebirr/Chapa/CBE Birr API integration, Multi-location support, Admin Dashboard for kitchen/riders, Advanced SEO & Analytics.
-• _የማይካተቱ (Not Included):_ Domain & Hosting.
-
-⚠️ *ተጨማሪ ክፍያዎች (Optional Add-Ons):*
-• *Domain & Hosting:* 5,000 – 10,000 ETB (ዓመታዊ ክፍያ)
-• *Photography/Videography:* 10,000 – 15,000 ETB (ለጁስ/ምግብ ፎቶዎች ጥራት)
-• *Maintenance (ጥገና):* ከ 3-6 ወር ነጻ ድጋፍ በኋላ ዓመታዊ የጥገና ክፍያ`;
+• _የማይካተቱ (Not Included):_ Domain & Hosting.`;
 
     const inlineKeyboard = {
         inline_keyboard: [
