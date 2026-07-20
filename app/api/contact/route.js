@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request) {
     try {
-        const { name, phone, telegram } = await request.json();
+        const { name, phone, telegram, message: clientMessage } = await request.json();
         
         const botToken = process.env.TELEGRAM_BOT_TOKEN;
         const chatId = process.env.TELEGRAM_CHAT_ID;
@@ -15,27 +15,41 @@ export async function POST(request) {
             }, { status: 500 });
         }
         
-        const message = `📬 *New Lead from Portfolio!*\n\n👤 *Name*: ${name}\n📞 *Phone*: ${phone}\n✈️ *Telegram*: @${telegram.replace('@', '')}`;
+        let message = `📬 *New Lead from Portfolio!*\n\n👤 *Name*: ${name}\n📞 *Phone*: ${phone}\n✈️ *Telegram*: @${telegram.replace('@', '')}`;
+        if (clientMessage) {
+            message += `\n📝 *Message*: ${clientMessage}`;
+        }
         
-        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-                parse_mode: 'Markdown'
-            })
+        // Support multiple chat IDs separated by commas
+        const chatIds = chatId.split(',').map(id => id.trim());
+        
+        const sendPromises = chatIds.map(async (id) => {
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: id,
+                        text: message,
+                        parse_mode: 'Markdown'
+                    })
+                });
+                return await response.json();
+            } catch (err) {
+                return { ok: false, description: err.message };
+            }
         });
         
-        const data = await response.json();
+        const results = await Promise.all(sendPromises);
+        const successfulCount = results.filter(r => r.ok).length;
         
-        if (!response.ok || !data.ok) {
-            console.error('Telegram API error:', data);
+        if (successfulCount === 0) {
+            console.error('Telegram API error (all failed):', results);
             return NextResponse.json({ 
                 success: false, 
-                error: data.description || 'Failed to dispatch to Telegram.' 
+                error: results[0].description || 'Failed to dispatch to Telegram.' 
             }, { status: 500 });
         }
         

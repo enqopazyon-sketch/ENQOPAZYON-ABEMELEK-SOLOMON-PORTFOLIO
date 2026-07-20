@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ENQOPAZYON - Premium Modern Ethiopian Fusion Restaurant & Recipe Hub. Experience culinary excellence.">
+  <meta name="application-name" content="ENQOPAZYON">
+  <title>ENQOPAZYON | Premium Fusion Gastronomy & Recipes</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cinematic Pre-loader Overlay -->
+  <div class="intro-overlay" id="intro-overlay">
+    <div class="intro-content">
+      <div class="intro-tag-luxury">✦ EXPERIENCE MODERN FUSION GASTRONOMY ✦</div>
+      <div class="intro-logo-wrapper">
+        <img src="images/logo.jpg" alt="ENQOPAZYON Gem Logo" class="intro-logo-img">
+        <div class="intro-logo-text">ENQOPAZYON</div>
+      </div>
+      <div class="intro-loader-bar">
+        <div class="intro-loader-progress" id="intro-progress"></div>
+      </div>
+      <div class="intro-status" id="intro-status">እንኳን ደህና መጡ | LOADING EXPERIENCE...</div>
+    </div>
+  </div>
+
+  <!-- Ambient Glow Orbs -->
+  <div class="ambient-glow orb-emerald-top"></div>
+  <div class="ambient-glow orb-gold-bottom"></div>
+
+  <!-- Header / Navigation -->
+  <header class="main-header" id="main-header">
+    <div class="container nav-wrapper">
+      <a href="#" class="brand-logo">
+        <img src="images/logo.jpg" alt="ENQOPAZYON Logo" class="brand-logo-img">
+        <span>ENQOPAZYON</span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#menu" class="nav-link">Menu & Recipes</a></li>
+          <li><a href="#reservation" class="nav-link">Reserve Table</a></li>
+          <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-trigger" id="cart-trigger" aria-label="Open Shopping Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-counter" id="cart-counter">0</span>
+        </button>
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-text-content">
+          <span class="hero-badge"><i class="fa-solid fa-gem"></i> The Emerald of Ethiopian Gastronomy</span>
+          <h1 class="hero-title">Where Tradition Meets <br><span class="highlight-green">Modern Fusion</span></h1>
+          <p class="hero-description">
+            ENQOPAZYON redefines Ethiopian cuisine by blending age-old spices and traditional techniques with modern culinary arts. Indulge in an exquisite, gemstone-quality dining experience designed for true connoisseurs.
+          </p>
+          <div class="hero-ctas">
+            <a href="#menu" class="btn btn-primary">Explore Menu & Recipes <i class="fa-solid fa-arrow-right"></i></a>
+            <a href="#reservation" class="btn btn-outline">Book a Table</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-backdrop"></div>
+          <div class="hero-image-card">
+            <!-- Simulated Premium Dish Showcase -->
+            <div class="dish-showcase-ring">
+              <div class="dish-badge">Signature</div>
+              <img src="images/kitfo_truffle.jpg" alt="ENQOPAZYON Signature Dish" class="showcase-dish-img">
+            </div>
+            <div class="dish-stats-floating">
+              <div class="stat-pill"><i class="fa-solid fa-star text-gold"></i> 4.9 Rated</div>
+              <div class="stat-pill"><i class="fa-solid fa-fire text-orange"></i> Culinary Masterpiece</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu & Recipe Hub Section -->
+    <section class="menu-section" id="menu">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Interactive Menu & Recipes</span>
+          <h2 class="section-title">The Culinary <span>Jewels</span></h2>
+          <p class="section-subtitle">Browse our signature creations, view their secrets, and add them to your order.</p>
+        </div>
+
+        <!-- Filter Categories -->
+        <div class="category-filters">
+          <button class="filter-btn active" data-category="all">All Specialties</button>
+          <button class="filter-btn" data-category="fusion">Fusion Signature</button>
+          <button class="filter-btn" data-category="traditional">Traditional Gems</button>
+          <button class="filter-btn" data-category="dessert">Gourmet Desserts</button>
+          <button class="filter-btn" data-category="beverage">House Infusions</button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menu-grid">
+          <!-- Items will be generated dynamically by JS for robust control -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservation Booking Section -->
+    <section class="reservation-section" id="reservation">
+      <div class="container reservation-card glass-card">
+        <div class="reservation-grid">
+          <div class="reservation-info">
+            <span class="reservation-badge">Fine Dining</span>
+            <h2 class="reservation-title">Experience <br>ENQOPAZYON</h2>
+            <p class="reservation-desc">
+              Book a table to experience our fine dining in person. Enjoy a luxurious atmosphere styled around our heritage and the gemstone theme, with curated music and live fusion cooking.
+            </p>
+            <div class="reservation-features">
+              <div class="feature-item">
+                <i class="fa-solid fa-clock"></i>
+                <div>
+                  <h4>Dining Hours</h4>
+                  <p>Mon - Sun: 12:00 PM - 11:00 PM</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                  <h4>Location</h4>
+                  <p>Bole, Behind Edna Mall, Addis Ababa</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reservation-form-container">
+            <form class="reservation-form" id="reservation-form">
+              <h3 class="form-title">Reserve a Table</h3>
+              
+              <div class="form-group-row">
+                <div class="form-group">
+                  <label for="reserve-name">Full Name</label>
+                  <input type="text" id="reserve-name" required placeholder="Abemelek Solomon">
+                </div>
+                <div class="form-group">
+                  <label for="reserve-phone">Phone Number</label>
+                  <input type="tel" id="reserve-phone" required placeholder="+251 912 345678">
+                </div>
+              </div>
+
+              <div class="form-group-row">
+                <div class="form-group">
+                  <label for="reserve-date">Date</label>
+                  <input type="date" id="reserve-date" required>
+                </div>
+                <div class="form-group">
+                  <label for="reserve-time">Time</label>
+                  <input type="time" id="reserve-time" required>
+                </div>
+              </div>
+
+              <div class="form-group-row">
+                <div class="form-group">
+                  <label for="reserve-guests">Number of Guests</label>
+                  <select id="reserve-guests" required>
+                    <option value="1">1 Person</option>
+                    <option value="2" selected>2 People</option>
+                    <option value="4">4 People</option>
+                    <option value="6">6 People</option>
+                    <option value="8">8+ People (Group)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="reserve-experience">Seating Preference</label>
+                  <select id="reserve-experience">
+                    <option value="standard">Standard Dining Hall</option>
+                    <option value="vip">VIP Emerald Lounge</option>
+                    <option value="terrace">Sky Terrace Garden</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="reserve-requests">Special Requests</label>
+                <textarea id="reserve-requests" rows="2" placeholder="Dietary restrictions, anniversary notes, etc."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Confirm Reservation <i class="fa-regular fa-calendar-check"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials & Reviews Section -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Guest Experiences</span>
+          <h2 class="section-title">Reviews & <span>Feedback</span></h2>
+          <p class="section-subtitle">Here is what our gourmet guests have to say about ENQOPAZYON.</p>
+        </div>
+
+        <div class="testimonials-grid" id="testimonials-grid">
+          <!-- Rendered dynamically via JS -->
+        </div>
+
+        <!-- Add Review Form -->
+        <div class="add-review-wrapper glass-card">
+          <h3 class="add-review-title">Leave Your Impression</h3>
+          <form id="review-form" class="review-form">
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="review-name">Name</label>
+                <input type="text" id="review-name" required placeholder="Your Name">
+              </div>
+              <div class="form-group">
+                <label for="review-rating">Rating</label>
+                <div class="rating-input-stars" id="rating-stars">
+                  <i class="fa-star fa-regular star-btn" data-value="1"></i>
+                  <i class="fa-star fa-regular star-btn" data-value="2"></i>
+                  <i class="fa-star fa-regular star-btn" data-value="3"></i>
+                  <i class="fa-star fa-regular star-btn" data-value="4"></i>
+                  <i class="fa-star fa-regular star-btn" data-value="5"></i>
+                </div>
+                <input type="hidden" id="review-rating-value" value="5">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="review-text">Your Feedback</label>
+              <textarea id="review-text" rows="3" required placeholder="Share your culinary experience..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Review <i class="fa-regular fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Recipe Detail and Cooking Guide Modal -->
+  <div class="modal-backdrop" id="recipe-modal">
+    <div class="modal-card glass-card">
+      <button class="modal-close" id="recipe-modal-close" aria-label="Close Modal"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="modal-content-wrapper" id="recipe-modal-content">
+        <!-- Will be populated dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop">
+    <div class="cart-drawer" id="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3><i class="fa-solid fa-bag-shopping highlight-green"></i> Your Culinary Selection</h3>
+        <button class="cart-drawer-close" id="cart-close" aria-label="Close Cart"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="cart-items-container" id="cart-items-list">
+        <!-- Dynamic Cart Items -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div class="price-summary">
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">ETB 0.00</span>
+          </div>
+          <div class="summary-line">
+            <span>Vat & Service (10%)</span>
+            <span id="cart-tax">ETB 0.00</span>
+          </div>
+          <div class="summary-line total-line">
+            <span>Total</span>
+            <span id="cart-total" class="highlight-green">ETB 0.00</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" id="checkout-btn">Proceed to Checkout <i class="fa-solid fa-credit-card"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableside Checkout Modal -->
+  <div class="modal-backdrop" id="checkout-modal">
+    <div class="modal-card glass-card checkout-card">
+      <button class="modal-close" id="checkout-modal-close" aria-label="Close Checkout"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div id="checkout-form-container">
+        <h2 class="form-title text-center"><i class="fa-solid fa-receipt highlight-green"></i> Tableside Checkout | የጠረጴዛ ክፍያ</h2>
+        <p class="text-center text-muted" style="margin-bottom: 24px;">Please provide your table number and select a payment option to complete your order.</p>
+        
+        <div class="checkout-amount-bar text-center">
+          <span>Amount to Pay / የሚከፈልበት ጠቅላላ:</span>
+          <h3 id="checkout-bill-total" class="highlight-green">ETB 0.00</h3>
+        </div>
+
+        <form id="checkout-form" class="checkout-form">
+          <!-- Table Number Input -->
+          <div class="form-group">
+            <label for="checkout-table-num"><i class="fa-solid fa-chair text-gold"></i> Table Number / የጠረጴዛ ቁጥር</label>
+            <input type="number" id="checkout-table-num" required min="1" max="50" placeholder="Enter Table Number (e.g. 5)">
+          </div>
+
+          <!-- Payment Method Selector -->
+          <div class="form-group">
+            <label>Payment Method / የክፍያ አማራጭ</label>
+            <div class="payment-selector-grid">
+              <button type="button" class="payment-method-btn active" id="pay-method-telebirr" data-method="telebirr">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <div>
+                  <strong>Telebirr</strong>
+                  <span>Instant Pay</span>
+                </div>
+              </button>
+              
+              <button type="button" class="payment-method-btn" id="pay-method-cbe" data-method="cbe">
+                <i class="fa-solid fa-building-columns"></i>
+                <div>
+                  <strong>CBE Transfer</strong>
+                  <span>Bank Receipt</span>
+                </div>
+              </button>
+            </div>
+            <input type="hidden" id="selected-payment-method" value="telebirr">
+          </div>
+
+          <!-- Dynamic Payment Details -->
+          <div class="payment-details-wrapper">
+            <!-- Telebirr details panel -->
+            <div class="payment-panel active" id="panel-telebirr">
+              <div class="form-group">
+                <label for="checkout-phone">Telebirr Mobile Number / የስልክ ቁጥር</label>
+                <input type="tel" id="checkout-phone" placeholder="09xxxxxxxx or 07xxxxxxxx">
+                <span class="input-helper">We will send a payment push request to this phone.</span>
+              </div>
+            </div>
+
+            <!-- CBE details panel -->
+            <div class="payment-panel" id="panel-cbe">
+              <div class="cbe-bank-info glass-card">
+                <div class="info-row">
+                  <span>Bank Name:</span>
+                  <strong>Commercial Bank of Ethiopia (CBE)</strong>
+                </div>
+                <div class="info-row">
+                  <span>Account Number:</span>
+                  <strong class="highlight-green">1000456789123</strong>
+                </div>
+                <div class="info-row">
+                  <span>Account Name:</span>
+                  <strong>ENQOPAZYON RESTAURANT</strong>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 16px;">
+                <label for="checkout-ref-no">Transaction Reference Number / የክፍያ መለያ (Ref No.)</label>
+                <input type="text" id="checkout-ref-no" placeholder="e.g. FT26XXXXXXXX">
+                <span class="input-helper">Please transfer the amount via CBE Birr or Mobile Banking and input the reference code.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 24px;">
+            <button type="submit" class="btn btn-primary btn-block" id="confirm-payment-btn">
+              Confirm & Pay Now / ክፍያውን ፈጽም <i class="fa-solid fa-circle-check"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Processing State Loader -->
+      <div id="checkout-processing-container" style="display: none;">
+        <div class="payment-processing-content text-center">
+          <div class="payment-spinner"></div>
+          <h3 id="processing-title">Initiating Transaction...</h3>
+          <p id="processing-status-text" class="text-muted">Connecting to payment gateway...</p>
+          <div class="processing-progress-track">
+            <div class="processing-progress-bar" id="processing-bar"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Simulation Booking/Order Success Modal -->
+  <div class="modal-backdrop" id="success-modal">
+    <div class="success-card glass-card text-center">
+      <div class="success-icon-wrapper">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2 class="success-title" id="success-title">Confirmed!</h2>
+      <p class="success-msg" id="success-message">Your reservation has been locked in. We have sent a Telegram alert to our concierge.</p>
+      <button class="btn btn-primary" id="success-close">Return to Dining</button>
+    </div>
+  </div>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand-info">
+        <a href="#" class="brand-logo">
+          <img src="images/logo.jpg" alt="ENQOPAZYON Logo" class="brand-logo-img">
+          <span>ENQOPAZYON</span>
+        </a>
+        <p class="footer-tagline">
+          Crafting fine-dining fusion dishes and sharing culinary secrets with our community.
+        </p>
+        <div class="footer-socials">
+          <a href="https://t.me/Enqopazyon9" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-telegram"></i></a>
+          <a href="mailto:enqopazyon@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#menu">Menu & Recipes</a></li>
+          <li><a href="#reservation">Reserve Table</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact-col">
+        <h4>Contact & Inquiries</h4>
+        <p><i class="fa-solid fa-phone"></i> +251 912 345678</p>
+        <p><i class="fa-solid fa-envelope"></i> enqopazyon@gmail.com</p>
+        <p><i class="fa-brands fa-telegram"></i> @Enqopazyon9</p>
+        <p><i class="fa-solid fa-location-dot"></i> Bole, Addis Ababa, Ethiopia</p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom text-center">
+      <p>© 2026 ENQOPAZYON | Developed by Abemelek Solomon (Melek) for Portfolio Showcase.</p>
+    </div>
+  </footer>
+
+  <!-- Core Javascript -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENQOPAZYON {dev} - Premium Telegram Concierge Bot Simulator</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Simulate ordering premium websites, Telegram bots, and mobile apps directly from Melek's development team.">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- 1. PREMIUM CYBERPRELOADER OVERLAY         -->
+  <!-- ========================================== -->
+  <div id="cyber-preloader" class="cyber-preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo-container">
+        <img src="/enqopazyon_logo.jpg" alt="Logo" class="preloader-logo" />
+        <div class="logo-glow"></div>
+      </div>
+      <h1 class="preloader-title">ENQOPAZYON <span>{dev}</span></h1>
+      <p class="preloader-subtitle">Loading Interactive Chat Terminal</p>
+      
+      <div class="preloader-bar-bg">
+        <div class="preloader-bar-fill" id="preloader-fill"></div>
+      </div>
+      <div class="preloader-status">
+        <span id="preloader-text">Loading chat assets...</span>
+        <span id="preloader-pct">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. MAIN CONSOLE INTERFACE                  -->
+  <!-- ========================================== -->
+  <div id="app-container" class="app-container" style="opacity: 0; transform: scale(0.97);">
+    
+    <!-- Left Pane: Interactive Mobile Mockup -->
+    <section class="phone-pane">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <!-- Telegram Header -->
+          <div class="tg-header">
+            <div class="tg-back-btn"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="tg-avatar-container">
+              <img src="/enqopazyon_logo.jpg" alt="Avatar" class="tg-avatar" />
+              <span class="active-dot"></span>
+            </div>
+            <div class="tg-header-info">
+              <h3>ENQOPAZYON {dev} <i class="fa-solid fa-circle-check verified-badge"></i></h3>
+              <span>bot • online</span>
+            </div>
+            <div class="tg-menu-btn"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+          </div>
+
+          <!-- Telegram Chat Messages Body -->
+          <div class="tg-chat-body" id="chat-messages-container">
+            <!-- Messages populated dynamically -->
+          </div>
+
+          <!-- Typing Indicator -->
+          <div class="typing-indicator-wrapper" id="typing-indicator" style="display: none;">
+            <span class="avatar-small"><img src="/enqopazyon_logo.jpg" alt="Avatar" /></span>
+            <div class="typing-bubble">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+          </div>
+
+          <!-- Dynamic Reply Keyboard Area -->
+          <div class="tg-keyboard-area">
+            <div class="keyboard-grid" id="reply-keyboard">
+              <!-- Inline action buttons populated dynamically -->
+            </div>
+            
+            <!-- TextInput Message Input Bar -->
+            <div class="tg-input-bar">
+              <input type="text" id="chat-text-input" placeholder="Type a message..." disabled />
+              <button class="tg-send-btn" id="chat-send-btn" disabled>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Pane: Webhook Webhooks Log Stream -->
+    <section class="webhook-pane glass-card">
+      <div class="webhook-header">
+        <div class="console-title">
+          <i class="fa-solid fa-server console-icon"></i>
+          <div>
+            <h3>Concierge Webhook Console</h3>
+            <span>Lead Dispatch Listener Logs</span>
+          </div>
+        </div>
+        <span class="webhook-status online">LISTENING</span>
+      </div>
+
+      <div class="console-terminal" id="webhook-logs">
+        <div class="console-placeholder">
+          <i class="fa-solid fa-terminal"></i>
+          <p>Awaiting customer interaction. Logs will print when leads generate or keyboard options are clicked.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="app.js"></script>
+</body>
+</html>

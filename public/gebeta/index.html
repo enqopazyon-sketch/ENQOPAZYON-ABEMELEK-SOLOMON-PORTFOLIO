@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GEBETA DELIVERY - Premium On-Demand Food & Grocery Delivery App with Real-Time Driver Tracking and Smart Routing.">
+  <meta name="application-name" content="GEBETA DELIVERY">
+  <title>GEBETA DELIVERY | Premium Tableside & Home Delivery</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Cinematic Delivery Pre-loader -->
+  <div class="intro-overlay" id="intro-overlay">
+    <div class="intro-content">
+      <div class="intro-logo-container">
+        <div class="intro-delivery-icon">
+          <i class="fa-solid fa-motorcycle"></i>
+        </div>
+        <div class="intro-brand">GEBETA <span>DELIVERY</span></div>
+      </div>
+      <div class="intro-road-line">
+        <div class="intro-courier-rider" id="intro-rider">
+          <i class="fa-solid fa-motorcycle"></i>
+        </div>
+      </div>
+      <div class="intro-loader-bar">
+        <div class="intro-loader-progress" id="intro-progress"></div>
+      </div>
+      <div class="intro-status" id="intro-status">CONNECTING TO GPS CONCIERGE...</div>
+    </div>
+  </div>
+
+  <!-- Ambient Glow Background Orbs -->
+  <div class="ambient-glow orb-saffron-top"></div>
+  <div class="ambient-glow orb-gold-bottom"></div>
+
+  <!-- Dashboard Container -->
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <i class="fa-solid fa-utensils"></i>
+        </div>
+        <span>GEBETA</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li class="nav-item active" data-target="browse">
+            <i class="fa-solid fa-store"></i>
+            <span>Browse Stores</span>
+          </li>
+          <li class="nav-item" id="nav-track" data-target="track">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Live Tracking</span>
+            <span class="tracking-dot-pulse" id="tracking-active-indicator" style="display: none;"></span>
+          </li>
+          <li class="nav-item" data-target="orders">
+            <i class="fa-solid fa-receipt"></i>
+            <span>Active Orders</span>
+            <span class="orders-counter-badge" id="orders-counter">0</span>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-status-card glass-card">
+          <div class="status-avatar">AS</div>
+          <div class="status-info">
+            <strong>Abemelek S.</strong>
+            <span>Addis Ababa, ET</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="app-main-content">
+      
+      <!-- Top Action Bar -->
+      <header class="app-topbar">
+        <button class="menu-toggle-btn" id="sidebar-toggle" aria-label="Toggle Sidebar">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="location-picker glass-card">
+          <i class="fa-solid fa-location-dot highlight-saffron"></i>
+          <span id="current-location-text">Bole, Addis Ababa</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="cart-trigger" id="cart-trigger" aria-label="Open Shopping Bag">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span class="cart-counter" id="cart-counter">0</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Viewport content sections -->
+      <div class="app-viewport">
+
+        <!-- 1. BROWSE TAB VIEW -->
+        <section class="viewport-tab active" id="tab-browse">
+          <div class="welcome-banner glass-card">
+            <div class="banner-text">
+              <h1>Satisfy Your Cravings</h1>
+              <p>Premium Ethiopian gourmet and fresh groceries delivered to your door with smart GPS tracking.</p>
+            </div>
+            <div class="banner-graphic">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+          </div>
+
+          <!-- Stores Directory -->
+          <div class="directory-section" id="merchant-directory">
+            <h2 class="directory-title">Gourmet Partners & Kitchens</h2>
+            <div class="merchants-grid" id="merchants-grid">
+              <!-- Merchant cards rendered dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Merchant Menu View (Shown when merchant is clicked) -->
+          <div class="merchant-menu-section" id="merchant-menu-view" style="display: none;">
+            <button class="btn btn-secondary back-to-dir-btn" id="close-menu-view">
+              <i class="fa-solid fa-arrow-left"></i> Back to Stores
+            </button>
+            <div class="merchant-detail-header glass-card" id="menu-merchant-header">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="menu-items-grid" id="menu-items-grid">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+
+
+        <!-- 2. LIVE TRACKING TAB VIEW -->
+        <section class="viewport-tab" id="tab-track">
+          <div class="tracking-container">
+            <!-- Left Side Details Panel -->
+            <div class="tracking-details-col">
+              
+              <!-- Active Courier Selector -->
+              <div class="tracking-selector-card glass-card" id="tracking-selector-container" style="display: none;">
+                <span class="panel-label">Select Active Delivery / ትዕዛዝ ይምረጡ</span>
+                <div class="tracking-selectors-grid" id="tracking-selectors-grid">
+                  <!-- Dynamically populated buttons -->
+                </div>
+              </div>
+              <div class="tracking-card-header glass-card">
+                <span class="tracking-status-badge pulse-saffron" id="track-status-badge">Idle</span>
+                <h2 id="track-merchant-name">No Active Delivery</h2>
+                <p id="track-order-summary" class="text-muted">Place an order to start real-time tracking.</p>
+              </div>
+
+              <!-- Driver details card -->
+              <div class="driver-card glass-card" id="track-driver-card" style="display: none;">
+                <div class="driver-avatar"><i class="fa-solid fa-motorcycle"></i></div>
+                <div class="driver-info">
+                  <h4 id="driver-name">Tariku Hailu</h4>
+                  <span>Assigned Courier • <i class="fa-solid fa-star text-gold"></i> 4.9</span>
+                </div>
+                <a href="tel:+251912345678" class="driver-call-btn" aria-label="Call Driver"><i class="fa-solid fa-phone"></i></a>
+              </div>
+
+              <!-- Telemetry statistics -->
+              <div class="telemetry-grid">
+                <div class="telemetry-card glass-card">
+                  <span>Estimated Time</span>
+                  <strong id="track-eta">-- mins</strong>
+                </div>
+                <div class="telemetry-card glass-card">
+                  <span>Distance</span>
+                  <strong id="track-distance">-- km</strong>
+                </div>
+              </div>
+
+              <!-- Delivery Status Logs -->
+              <div class="status-logs-card glass-card">
+                <h3>Delivery Progress Logs</h3>
+                <ul class="status-logs-list" id="track-status-logs">
+                  <li class="log-item empty-log">Waiting for order initiation...</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Map Viewport -->
+            <div class="map-viewport glass-card">
+              <div class="map-loading-overlay" id="map-idle-overlay">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p>Awaiting order checkout to overlay routing...</p>
+              </div>
+
+              <!-- SVG Animated Tracking Map -->
+              <svg class="tracking-map-svg" id="tracking-map-svg" viewBox="0 0 800 600" width="100%" height="100%" style="display: none;">
+                <!-- Grid background for technical/high-performance feeling -->
+                <defs>
+                  <pattern id="map-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1" />
+                  </pattern>
+                  <linearGradient id="route-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF6B00" />
+                    <stop offset="100%" stop-color="#FFB300" />
+                  </linearGradient>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#map-grid)" />
+
+                <!-- Streets Layout -->
+                <g class="map-streets" stroke="rgba(255, 255, 255, 0.06)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                  <path d="M 50,150 L 750,150" /> <!-- Bole Road -->
+                  <path d="M 150,50 L 150,550" /> <!-- Ring Road North -->
+                  <path d="M 650,50 L 650,550" /> <!-- Ring Road East -->
+                  <path d="M 50,450 L 750,450" /> <!-- Churchill Road -->
+                  <path d="M 400,50 L 400,550" /> <!-- Diagonal Link -->
+                </g>
+                <g class="map-streets-inner" stroke="rgba(255, 255, 255, 0.12)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                  <path d="M 50,150 L 750,150" />
+                  <path d="M 150,50 L 150,550" />
+                  <path d="M 650,50 L 650,550" />
+                  <path d="M 50,450 L 750,450" />
+                  <path d="M 400,50 L 400,550" />
+                </g>
+
+                <!-- Smart Optimized Route Line (Pulsing neon) -->
+                <path class="route-path-line" id="route-path-line" d="M 150,150 L 400,150 L 400,450 L 650,450" fill="none" stroke="url(#route-gradient)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+
+                <!-- Restaurant Marker Pin -->
+                <g class="map-marker" id="marker-restaurant" transform="translate(150, 150)">
+                  <circle r="20" fill="rgba(255, 107, 0, 0.2)" class="marker-glow" />
+                  <circle r="10" fill="#FF6B00" />
+                  <foreignObject x="-8" y="-10" width="20" height="20">
+                    <i class="fa-solid fa-shop" style="color: white; font-size: 11px;"></i>
+                  </foreignObject>
+                  <text y="-25" text-anchor="middle" fill="#FF6B00" font-weight="700" font-size="12">KITCHEN</text>
+                </g>
+
+                <!-- Customer Destination Marker Pin -->
+                <g class="map-marker" id="marker-customer" transform="translate(650, 450)">
+                  <circle r="20" fill="rgba(0, 168, 107, 0.2)" class="marker-glow" />
+                  <circle r="10" fill="#00A86B" />
+                  <foreignObject x="-6" y="-10" width="20" height="20">
+                    <i class="fa-solid fa-house" style="color: white; font-size: 11px;"></i>
+                  </foreignObject>
+                  <text y="-25" text-anchor="middle" fill="#00A86B" font-weight="700" font-size="12" id="marker-customer-label">YOUR HOME</text>
+                </g>
+
+                <!-- Delivery Rider motorcycle icon (animated along the path) -->
+                <g class="map-rider-courier" id="map-rider-courier" transform="translate(150, 150)">
+                  <circle r="24" fill="rgba(255, 179, 0, 0.25)" class="rider-glow" />
+                  <circle r="14" fill="#FFB300" stroke="#fff" stroke-width="1.5" />
+                  <foreignObject x="-9" y="-8" width="20" height="20">
+                    <i class="fa-solid fa-motorcycle" style="color: #0E0E12; font-size: 12px;"></i>
+                  </foreignObject>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- 3. ACTIVE ORDERS TAB VIEW -->
+        <section class="viewport-tab" id="tab-orders">
+          <div class="orders-section">
+            <h2 class="directory-title">Active Orders & History (<span id="orders-header-counter">0</span>)</h2>
+            <div class="orders-list-wrapper" id="orders-list-wrapper">
+              <!-- Orders listing dynamically compiled -->
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Shopping Basket Slide-out Drawer -->
+  <div class="cart-drawer-backdrop" id="cart-drawer-backdrop">
+    <div class="cart-drawer" id="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3><i class="fa-solid fa-basket-shopping highlight-saffron"></i> Basket / የማዘዣ ቅርጫት</h3>
+        <button class="cart-drawer-close" id="cart-close" aria-label="Close Basket"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="cart-items-container" id="cart-items-list">
+        <!-- Cart elements populated by app.js -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <div class="price-summary">
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">ETB 0.00</span>
+          </div>
+          <div class="summary-line">
+            <span>Delivery Fee / ፖስታኛ</span>
+            <span id="cart-delivery-fee">ETB 90.00</span>
+          </div>
+          <div class="summary-line total-line">
+            <span>Total</span>
+            <span id="cart-total" class="highlight-saffron">ETB 0.00</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block" id="checkout-trigger-btn">Proceed to Checkout <i class="fa-solid fa-angles-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableside / Home Checkout Modal -->
+  <div class="modal-backdrop" id="checkout-modal">
+    <div class="modal-card glass-card checkout-card">
+      <button class="modal-close" id="checkout-modal-close" aria-label="Close Checkout"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div id="checkout-form-container">
+        <h2 class="form-title text-center"><i class="fa-solid fa-truck-fast highlight-saffron"></i> Complete Order | ማዘዣ ማጠናቀቂያ</h2>
+        <p class="text-center text-muted" style="margin-bottom: 24px;">Please specify delivery information and complete payment verification.</p>
+
+        <form id="checkout-form" class="checkout-form">
+          <!-- Delivery Address -->
+          <div class="form-group">
+            <label for="checkout-address"><i class="fa-solid fa-location-dot text-gold"></i> Delivery Address / የማድረሻ አድራሻ</label>
+            <input type="text" id="checkout-address" required placeholder="e.g. Bole Subcity, House No. 402, Addis Ababa">
+          </div>
+
+          <!-- Table Number (Optional, for tableside delivery inside partnered malls/lounges) -->
+          <div class="form-group-row">
+            <div class="form-group">
+              <label for="checkout-phone-num">Phone Number / ስልክ</label>
+              <input type="tel" id="checkout-phone-num" required placeholder="09xxxxxxxx">
+            </div>
+            <div class="form-group">
+              <label for="checkout-driver-tip">Rider Tip / ጉርሻ (ETB)</label>
+              <select id="checkout-driver-tip">
+                <option value="0">No Tip</option>
+                <option value="30" selected>30 ETB</option>
+                <option value="50">50 ETB</option>
+                <option value="100">100 ETB</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Payment Option Selector -->
+          <div class="form-group">
+            <label>Payment Option / የክፍያ አማራጭ</label>
+            <div class="payment-selector-grid">
+              <button type="button" class="payment-method-btn active" id="pay-method-telebirr" data-method="telebirr">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <div>
+                  <strong>Telebirr</strong>
+                  <span>Instant Pay</span>
+                </div>
+              </button>
+              
+              <button type="button" class="payment-method-btn" id="pay-method-cbe" data-method="cbe">
+                <i class="fa-solid fa-building-columns"></i>
+                <div>
+                  <strong>CBE Transfer</strong>
+                  <span>Bank Receipt</span>
+                </div>
+              </button>
+            </div>
+            <input type="hidden" id="selected-payment-method" value="telebirr">
+          </div>
+
+          <!-- Dynamic Details -->
+          <div class="payment-details-wrapper">
+            <!-- Telebirr details panel -->
+            <div class="payment-panel active" id="panel-telebirr">
+              <div class="form-group">
+                <label for="checkout-telebirr-phone">Telebirr Account Phone</label>
+                <input type="tel" id="checkout-telebirr-phone" placeholder="09xxxxxxxx or 07xxxxxxxx">
+                <span class="input-helper">A transaction confirmation SMS push will be sent to this number.</span>
+              </div>
+            </div>
+
+            <!-- CBE details panel -->
+            <div class="payment-panel" id="panel-cbe">
+              <div class="cbe-bank-info glass-card">
+                <div class="info-row">
+                  <span>Bank Name:</span>
+                  <strong>Commercial Bank of Ethiopia (CBE)</strong>
+                </div>
+                <div class="info-row">
+                  <span>Account Number:</span>
+                  <strong class="highlight-saffron">1000876543210</strong>
+                </div>
+                <div class="info-row">
+                  <span>Account Name:</span>
+                  <strong>GEBETA LOGISTICS PLC</strong>
+                </div>
+              </div>
+              <div class="form-group" style="margin-top: 16px;">
+                <label for="checkout-cbe-ref">Bank Reference Code / የክፍያ መለያ</label>
+                <input type="text" id="checkout-cbe-ref" placeholder="e.g. FT26XXXXXXXX">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 24px;">
+            <button type="submit" class="btn btn-primary btn-block" id="confirm-payment-btn">
+              Pay & Dispatch Rider / ክፍያውን ፈጽም <i class="fa-solid fa-motorcycle"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Processing State Loader -->
+      <div id="checkout-processing-container" style="display: none;">
+        <div class="payment-processing-content text-center">
+          <div class="payment-spinner"></div>
+          <h3 id="processing-title">Assigning Courier...</h3>
+          <p id="processing-status-text" class="text-muted">Finding nearby riders on the grid...</p>
+          <div class="processing-progress-track">
+            <div class="processing-progress-bar" id="processing-bar"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Core Javascript -->
+  <script src="app.js"></script>
+</body>
+</html>

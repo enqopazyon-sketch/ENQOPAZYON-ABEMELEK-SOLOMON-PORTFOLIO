@@ -16,6 +16,9 @@ export default function Home() {
   // Projects filtering state
   const [projectFilter, setProjectFilter] = useState('all');
 
+  // Certificate lightbox state
+  const [activeCert, setActiveCert] = useState(null);
+
   // Contact form submission states
   const [formState, setFormState] = useState({ name: '', phone: '', telegram: '', message: '' });
   const [submitStatus, setSubmitStatus] = useState({ loading: false, success: null, error: null });
@@ -26,6 +29,8 @@ export default function Home() {
     about: useRef(null),
     skills: useRef(null),
     projects: useRef(null),
+    certificates: useRef(null),
+    testimonials: useRef(null),
     contact: useRef(null),
   };
 
@@ -123,10 +128,21 @@ export default function Home() {
   // Projects list matching original index.html content
   const projects = [
     {
+      id: 0,
+      category: 'fullstack',
+      title: 'Restaurant Menu App',
+      image: '/enqopazyon_cover.png',
+      tag: 'Full-Stack Web App',
+      desc: 'A premium luxury restaurant & recipe web application. It features a cinematic pre-loader, interactive menus, recipe cards with dynamic scaling servings, step-by-step cooking guide with timer, and simulated cart / booking reservations.',
+      metric: '💎 Premium Showcase Project',
+      tech: ['HTML5', 'Vanilla CSS3', 'Javascript (ES6)', 'Next.js Public Hosting'],
+      link: '/enqopazyon/index.html'
+    },
+    {
       id: 1,
       category: 'bots',
       title: 'Negedras Bot',
-      image: '/enqopazyon_logo.jpg', // Using the beautiful 3D logo as project placeholders if needed, or keeping original structure
+      image: '/gebeta_cover.png',
       tag: 'Bot Development',
       desc: 'A fully automated Telegram e-commerce bot built for selling and distributing books, featuring local payment gateway verification, shopping cart system, and real-time delivery alerts.',
       metric: '🚀 Live on Telegram: @thenegedrasbot',
@@ -135,47 +151,47 @@ export default function Home() {
     },
     {
       id: 2,
-      category: 'apps',
+      category: 'mobile',
       title: 'Gebeta Delivery',
-      image: '/enqopazyon_logo.jpg',
+      image: '/negedras_cover.png',
       tag: 'App Development',
       desc: 'A high-performance food and grocery delivery mobile application serving thousands of users with real-time driver tracking and smart routing.',
       metric: '📱 10k+ Downloads',
       tech: ['Flutter', 'Dart', 'Google Maps API', 'Node.js'],
-      link: '#'
+      link: '/gebeta/index.html'
     },
     {
       id: 3,
       category: 'fullstack',
       title: 'Sheger Commerce',
-      image: '/enqopazyon_logo.jpg',
+      image: '/sheger-commerce/images/laptop.jpg',
       tag: 'Full-Stack Web',
       desc: 'A premium e-commerce portal integrated with Telebirr & Chapa payment gateways, automated inventory dashboards, and Telegram order alerts.',
       metric: '💰 $120k+ Processed Volume',
       tech: ['Javascript', 'PostgreSQL', 'Express', 'Chapa API'],
-      link: '#'
+      link: '/sheger-commerce/index.html'
     },
     {
       id: 4,
       category: 'bots',
-      title: 'EthioBot Creator',
+      title: 'ENQOPAZYON {dev}',
       image: '/enqopazyon_logo.jpg',
-      tag: 'Bot Development',
-      desc: 'A visual no-code bot construction software letting non-technical users build logic trees, auto-replies, and customer database collections on Telegram.',
-      metric: '🤖 5,000+ Bots Generated',
-      tech: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-      link: '#'
+      tag: 'Telegram Bot',
+      desc: 'A premium concierge bot designed for requesting custom website creation, Telegram bots, and mobile application development directly from our team.',
+      metric: '⚡ Instant Developer Chat',
+      tech: ['Telegram API', 'Node.js', 'Webhooks', 'Express'],
+      link: 'https://t.me/enqopazyondevbot'
     },
     {
       id: 5,
       category: 'fullstack',
       title: 'Adugna Finance',
-      image: '/enqopazyon_logo.jpg',
+      image: '/adugna_cover.png',
       tag: 'Full-Stack Web',
       desc: 'A premium dark-themed wealth tracking dashboard with automatic transaction alerts, budgeting tools, and secure banking-grade data pipelines.',
       metric: '📈 2,500+ Active Accounts',
       tech: ['Django', 'Python', 'PostgreSQL', 'Chart.js'],
-      link: '#'
+      link: '/adugna-finance/index.html'
     }
   ];
 
@@ -255,6 +271,15 @@ export default function Home() {
                 onClick={() => setNavActive(false)}
               >
                 Projects
+              </a>
+            </li>
+            <li>
+              <a 
+                href="#certificates" 
+                className={activeSection === 'certificates' ? 'active' : ''}
+                onClick={() => setNavActive(false)}
+              >
+                Certificates
               </a>
             </li>
             <li>
@@ -607,6 +632,146 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Certificates Section */}
+        <section id="certificates" ref={sectionRefs.certificates} className="reveal-on-scroll">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Credentials</span>
+              <h2 className="section-title">Professional <span>Certifications</span></h2>
+            </div>
+            
+            <div className="certificates-grid">
+              <div 
+                className="certificate-card glass-card"
+                onClick={() => setActiveCert('/cert_fullstack.png')}
+                style={{ cursor: 'pointer', padding: '24px' }}
+              >
+                <div className="certificate-details" style={{ padding: 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <span className="cert-issuer">Mind Luster</span>
+                    <i className="fa-solid fa-graduation-cap" style={{ fontSize: '20px', color: 'var(--accent-cyan)' }}></i>
+                  </div>
+                  <h3>Full Stack Web Development</h3>
+                  <div className="cert-meta">
+                    <span>Date: <strong>Sep 20, 2024</strong></span>
+                    <span>No: <strong>b69b9dd0</strong></span>
+                  </div>
+                </div>
+              </div>
+
+              <div 
+                className="certificate-card glass-card"
+                onClick={() => setActiveCert('/cert_ecommerce.png')}
+                style={{ cursor: 'pointer', padding: '24px' }}
+              >
+                <div className="certificate-details" style={{ padding: 0 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <span className="cert-issuer">Mind Luster</span>
+                    <i className="fa-solid fa-award" style={{ fontSize: '20px', color: 'var(--accent-gold)' }}></i>
+                  </div>
+                  <h3>E-Commerce Website Step by Step</h3>
+                  <div className="cert-meta">
+                    <span>Date: <strong>Sep 20, 2024</strong></span>
+                    <span>No: <strong>60e480d5</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section id="testimonials" ref={sectionRefs.testimonials} className="reveal-on-scroll">
+          <div className="container">
+            <div className="section-header">
+              <span className="section-tag">Client Feedback</span>
+              <h2 className="section-title">What My <span>Clients Say</span></h2>
+            </div>
+            
+            <div className="testimonials-grid">
+              <div className="testimonial-card glass-card">
+                <div className="testimonial-header">
+                  <div className="client-avatar"><i className="fa-solid fa-user-tie"></i></div>
+                  <div className="client-info">
+                    <h3>Natnael Biruk</h3>
+                    <span>Co-founder, Negadras Bot</span>
+                  </div>
+                </div>
+                <p className="testimonial-text">
+                  "The Negadras Bot built by Melek has transformed our digital sales on Telegram. The automated transaction verification is absolute gold."
+                </p>
+                <div className="testimonial-stars">
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                </div>
+              </div>
+
+              <div className="testimonial-card glass-card">
+                <div className="testimonial-header">
+                  <div className="client-avatar"><i className="fa-solid fa-truck-fast"></i></div>
+                  <div className="client-info">
+                    <h3>Kidus Solomon</h3>
+                    <span>Manager, Gebeta Delivery</span>
+                  </div>
+                </div>
+                <p className="testimonial-text">
+                  "Gebeta Delivery's real-time courier map routing works flawlessly. Clients love the live-tracking alerts and interactive interface."
+                </p>
+                <div className="testimonial-stars">
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                </div>
+              </div>
+
+              <div className="testimonial-card glass-card">
+                <div className="testimonial-header">
+                  <div className="client-avatar"><i className="fa-solid fa-utensils"></i></div>
+                  <div className="client-info">
+                    <h3>Helen Tesfaye</h3>
+                    <span>CEO, Enqopazyon Restaurant</span>
+                  </div>
+                </div>
+                <p className="testimonial-text">
+                  "The fine-dining menu system and tableside reservation app created for Enqopazyon brought us premium luxury dining standards. Outstanding work!"
+                </p>
+                <div className="testimonial-stars">
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                </div>
+              </div>
+
+              <div className="testimonial-card glass-card">
+                <div className="testimonial-header">
+                  <div className="client-avatar"><i className="fa-solid fa-wallet"></i></div>
+                  <div className="client-info">
+                    <h3>Aron Hailu</h3>
+                    <span>Founder, Adugna Finance</span>
+                  </div>
+                </div>
+                <p className="testimonial-text">
+                  "Adugna Finance has a secure, fast data pipeline, and the budgeting progress tools are top tier. Recommended developer for serious platforms!"
+                </p>
+                <div className="testimonial-stars">
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                  <i className="fa-solid fa-star"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="contact" ref={sectionRefs.contact} className="reveal-on-scroll">
           <div className="container">
@@ -658,11 +823,8 @@ export default function Home() {
                 </div>
 
                 <div className="social-links">
-                  <a href="#" className="social-icon" aria-label="GitHub">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                  </a>
-                  <a href="#" className="social-icon" aria-label="LinkedIn">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                  <a href="https://t.me/enqopazyondevbot" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Telegram" style={{ background: 'rgba(0, 136, 204, 0.1)', color: '#0088cc', borderColor: 'rgba(0, 136, 204, 0.2)' }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.13 2.82a2.52 2.52 0 0 0-2.45-.14L2.83 9.87a1.64 1.64 0 0 0-.11 3l4.7 1.93 1.93 4.7a1.63 1.63 0 0 0 3-.11l7.19-15.85a2.52 2.52 0 0 0-.14-2.45z"></path></svg>
                   </a>
                 </div>
               </div>
@@ -755,6 +917,16 @@ export default function Home() {
           <div className="footer-text">© 2026 ሜሌክ ENQOPAZYON. Handcrafted with precision in Addis Ababa.</div>
         </div>
       </footer>
+
+      {/* Certificate Lightbox Overlay */}
+      {activeCert && (
+        <div className="lightbox-overlay" onClick={() => setActiveCert(null)}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={() => setActiveCert(null)}>&times;</button>
+            <img src={activeCert} alt="Certificate Zoomed" className="lightbox-img" />
+          </div>
+        </div>
+      )}
     </>
   );
 }

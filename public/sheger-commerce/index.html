@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sheger Commerce - Premium E-Commerce & Inventory Portal</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="A premium tech e-commerce portal integrated with Telebirr, Chapa, automated inventory dashboards, and Telegram order alerts simulation.">
+  <meta name="keywords" content="e-commerce, Addis Ababa, Telebirr, Chapa, electronics store, inventory management">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- 1. CYBERPUNK INTRO PRELOADER -->
+  <!-- ========================================== -->
+  <div id="cyber-preloader" class="cyber-preloader">
+    <div class="preloader-content">
+      <div class="package-scanner-container">
+        <!-- SVG Cyberpunk Package Box -->
+        <svg class="cyber-box" viewBox="0 0 100 100">
+          <polygon points="50,15 85,32 85,68 50,85 15,68 15,32" fill="none" stroke="#00E5FF" stroke-width="2.5" />
+          <polygon points="50,15 85,32 50,50 15,32" fill="none" stroke="#00E5FF" stroke-width="1.5" />
+          <line x1="50" y1="50" x2="50" y2="85" stroke="#00E5FF" stroke-width="1.5" />
+          <line x1="15" y1="32" x2="50" y2="50" stroke="#00E5FF" stroke-width="1.5" />
+          <line x1="85" y1="32" x2="50" y2="50" stroke="#00E5FF" stroke-width="1.5" />
+        </svg>
+        <div class="laser-scanner-line"></div>
+      </div>
+      <h1 class="brand-title">SHEGER COMMERCE</h1>
+      <p class="brand-subtitle">Premium Electronics Portal</p>
+      
+      <!-- Progress Bar -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-fill" id="preloader-progress"></div>
+      </div>
+      <div class="progress-status">
+        <span id="preloader-percent">0%</span>
+        <span id="preloader-phrase" class="text-glow">Connecting to secure pipelines...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. MAIN APPLICATION WORKSPACE -->
+  <!-- ========================================== -->
+  <div id="app-workspace" class="app-workspace" style="opacity: 0; transform: scale(0.96);">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar-nav glass-card">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div>
+          <h2>Sheger Commerce</h2>
+          <span>Tech & Electronics</span>
+        </div>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item active" data-target="store" id="nav-btn-store">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span>Storefront</span>
+        </li>
+        <li class="nav-item" data-target="admin" id="nav-btn-admin">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>Admin Console</span>
+          <span class="active-badge" id="stock-alerts-badge" style="display: none;">3</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <span class="status-indicator online"></span>
+        <span>Secure Gateways Live</span>
+      </div>
+    </aside>
+
+    <!-- Main Viewport Area -->
+    <main class="main-viewport">
+      <!-- Header -->
+      <header class="viewport-header glass-card">
+        <div class="header-left">
+          <h1 id="viewport-title">Premium Catalog</h1>
+          <p id="viewport-subtitle">Browse and order high-performance technology</p>
+        </div>
+        <div class="header-right">
+          <!-- Cart Toggle Button -->
+          <button class="cart-trigger-btn glass-card" id="cart-trigger">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span class="cart-count-badge" id="cart-count-badge">0</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEWPORT TABS -->
+      <div class="tabs-container">
+        
+        <!-- ========================================== -->
+        <!-- TAB 1: CUSTOMER STOREFRONT -->
+        <!-- ========================================== -->
+        <section class="viewport-tab active" id="tab-store">
+          <div class="storefront-layout">
+            <!-- Filter Categories Row -->
+            <div class="categories-row">
+              <button class="category-btn active" data-category="all">All Tech</button>
+              <button class="category-btn" data-category="laptops"><i class="fa-solid fa-laptop"></i> Laptops</button>
+              <button class="category-btn" data-category="phones"><i class="fa-solid fa-mobile-screen"></i> Phones</button>
+              <button class="category-btn" data-category="audio"><i class="fa-solid fa-headphones"></i> Audio</button>
+              <button class="category-btn" data-category="wearables"><i class="fa-solid fa-clock"></i> Wearables</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="product-grid">
+              <!-- Dynamically populated product cards -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: MERCHANT/ADMIN DASHBOARD -->
+        <!-- ========================================== -->
+        <section class="viewport-tab" id="tab-admin">
+          <div class="admin-layout">
+            <!-- Analytics Cards Row -->
+            <div class="analytics-row">
+              <div class="stat-card glass-card">
+                <div class="stat-header">
+                  <span>TOTAL SALES REVENUE</span>
+                  <i class="fa-solid fa-wallet text-cyan"></i>
+                </div>
+                <h3 id="stat-revenue">ETB 0.00</h3>
+                <span class="stat-trend positive"><i class="fa-solid fa-caret-up"></i> +14.5% this week</span>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-header">
+                  <span>COMPLETED TRANSACTIONS</span>
+                  <i class="fa-solid fa-receipt text-purple"></i>
+                </div>
+                <h3 id="stat-orders">0</h3>
+                <span class="stat-trend positive"><i class="fa-solid fa-caret-up"></i> Live updates enabled</span>
+              </div>
+              <div class="stat-card glass-card">
+                <div class="stat-header">
+                  <span>LOW INVENTORY ALERTS</span>
+                  <i class="fa-solid fa-triangle-exclamation text-yellow"></i>
+                </div>
+                <h3 id="stat-alerts">0 items</h3>
+                <span class="stat-trend negative" id="stat-alerts-subtitle">All systems normal</span>
+              </div>
+            </div>
+
+            <!-- Dashboard Split View -->
+            <div class="admin-grid">
+              <!-- Left side: Inventory management table -->
+              <div class="inventory-card glass-card">
+                <div class="card-header-row">
+                  <h3>Inventory Database Manager</h3>
+                  <button class="add-item-btn" id="open-add-modal-btn"><i class="fa-solid fa-plus"></i> Add Item</button>
+                </div>
+                <div class="table-wrapper">
+                  <table class="inventory-table">
+                    <thead>
+                      <tr>
+                        <th>Product ID</th>
+                        <th>Product Details</th>
+                        <th>Category</th>
+                        <th>Price (ETB)</th>
+                        <th>Stock Level</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="inventory-table-body">
+                      <!-- Dynamically populated table rows -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Right side: Webhook notifications Console -->
+              <div class="integration-card glass-card">
+                <h3>Telegram Webhook Log Stream</h3>
+                <p class="section-desc">Simulated real-time JSON order notification packets dispatched to Telegram channel.</p>
+                <div class="telegram-console" id="telegram-console">
+                  <div class="console-placeholder">
+                    <i class="fa-brands fa-telegram"></i>
+                    <p>Awaiting checkout triggers to dispatch webhook alerts...</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- 3. SHOPPING CART SIDEBAR DRAWER -->
+    <!-- ========================================== -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
+    <div class="cart-drawer glass-card" id="cart-drawer">
+      <div class="cart-drawer-header">
+        <h3>Shopping Cart</h3>
+        <button class="close-cart-btn" id="close-cart"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      
+      <!-- Cart Contents -->
+      <div class="cart-body" id="cart-body">
+        <!-- Dynamically populated cart items or empty state -->
+      </div>
+
+      <!-- Cart Footer Summary -->
+      <div class="cart-footer">
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">ETB 0.00</span>
+        </div>
+        <div class="summary-line">
+          <span>Delivery & Tax</span>
+          <span id="cart-shipping">ETB 150.00</span>
+        </div>
+        <div class="summary-line total">
+          <span>Total Payable</span>
+          <span id="cart-total">ETB 0.00</span>
+        </div>
+
+        <!-- Checkout Buttons -->
+        <div class="checkout-actions">
+          <button class="checkout-btn telebirr" id="checkout-telebirr-btn">
+            <i class="fa-solid fa-wallet"></i>
+            Pay with Telebirr
+          </button>
+          <button class="checkout-btn chapa" id="checkout-chapa-btn">
+            <i class="fa-solid fa-credit-card"></i>
+            Pay with Chapa Card
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 4. TELEBIRR SIMULATION MODAL -->
+  <!-- ========================================== -->
+  <div class="modal-overlay" id="telebirr-modal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <div class="modal-brand telebirr">
+          <i class="fa-solid fa-wallet"></i>
+          <h3>Telebirr Secure Payment</h3>
+        </div>
+        <button class="close-modal-btn" onclick="closePaymentModal('telebirr')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Scan the secure QR Code below with your Telebirr app to authorize checkout.</p>
+        
+        <div class="qr-code-wrapper">
+          <!-- SVG QR Code Placeholder -->
+          <svg class="qr-code-svg" viewBox="0 0 100 100">
+            <rect width="10" height="10" x="5" y="5" fill="#FFF" />
+            <rect width="6" height="6" x="7" y="7" fill="#0E0E12" />
+            <rect width="10" height="10" x="85" y="5" fill="#FFF" />
+            <rect width="6" height="6" x="87" y="7" fill="#0E0E12" />
+            <rect width="10" height="10" x="5" y="85" fill="#FFF" />
+            <rect width="6" height="6" x="7" y="87" fill="#0E0E12" />
+            <!-- Random pattern path -->
+            <path d="M 20 20 L 40 20 L 40 40 L 30 40 M 60 10 L 70 10 L 70 30 M 10 60 L 30 60 L 30 80 M 50 50 L 80 50 L 80 80 M 60 60 L 70 70 L 90 90" stroke="white" stroke-width="4" fill="none" />
+            <!-- Scanner line -->
+            <line x1="0" y1="50" x2="100" y2="50" stroke="#00E5FF" stroke-width="2.5" class="qr-scanner-line" />
+          </svg>
+        </div>
+
+        <div class="payable-badge">
+          <span>Amount Payable</span>
+          <strong id="telebirr-payable-amount">ETB 0.00</strong>
+        </div>
+
+        <div class="spinner-status">
+          <div class="progress-spinner"></div>
+          <span>Awaiting Telebirr terminal handshake...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 5. CHAPA CARD SECURE FORM MODAL -->
+  <!-- ========================================== -->
+  <div class="modal-overlay" id="chapa-modal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <div class="modal-brand chapa">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Chapa Checkout Gateway</h3>
+        </div>
+        <button class="close-modal-btn" onclick="closePaymentModal('chapa')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form class="chapa-form" id="chapa-checkout-form">
+          <div class="form-group">
+            <label for="chapa-email">Email Address</label>
+            <input type="email" id="chapa-email" required placeholder="name@domain.com">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="chapa-card">Card Number</label>
+              <div class="input-icon-wrapper">
+                <i class="fa-solid fa-credit-card"></i>
+                <input type="text" id="chapa-card" required maxlength="19" placeholder="4000 1234 5678 9010">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="chapa-expiry">Expiry Date</label>
+              <input type="text" id="chapa-expiry" required placeholder="MM/YY" maxlength="5">
+            </div>
+            <div class="form-group">
+              <label for="chapa-cvc">CVC Code</label>
+              <input type="text" id="chapa-cvc" required placeholder="123" maxlength="3">
+            </div>
+          </div>
+          
+          <div class="payable-badge">
+            <span>Total to Charge</span>
+            <strong id="chapa-payable-amount">ETB 0.00</strong>
+          </div>
+
+          <button type="submit" class="submit-payment-btn" id="chapa-submit-btn">
+            <i class="fa-solid fa-lock"></i> Authorize Secure Payment
+          </button>
+        </form>
+
+        <!-- Chapa Loading View -->
+        <div class="payment-loading-screen" id="chapa-loading-screen" style="display: none;">
+          <div class="progress-spinner"></div>
+          <h4 class="text-glow">Connecting with Bank servers...</h4>
+          <p>Please do not refresh or close this panel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 6. ORDER SUCCESS MODAL -->
+  <!-- ========================================== -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-card glass-card text-center success-card">
+      <div class="success-icon-wrapper">
+        <div class="success-ring"></div>
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2 class="text-glow">Payment Authorized!</h2>
+      <p>Order details have been compiled and sent successfully.</p>
+      
+      <!-- Receipt detail box -->
+      <div class="receipt-box" id="success-receipt-details">
+        <!-- Dynamically generated receipt values -->
+      </div>
+
+      <button class="dismiss-success-btn" onclick="closePaymentModal('success')">Back to Store</button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 7. ADD INVENTORY PRODUCT MODAL -->
+  <!-- ========================================== -->
+  <div class="modal-overlay" id="add-item-modal">
+    <div class="modal-card glass-card">
+      <div class="modal-header">
+        <h3>Add New Inventory Product</h3>
+        <button class="close-modal-btn" onclick="closePaymentModal('add-item')"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="add-product-form">
+          <div class="form-group">
+            <label for="add-name">Product Name</label>
+            <input type="text" id="add-name" required placeholder="e.g. iPad Pro M4">
+          </div>
+          <div class="form-group">
+            <label for="add-category">Category</label>
+            <select id="add-category" required>
+              <option value="laptops">Laptops</option>
+              <option value="phones">Phones</option>
+              <option value="audio">Audio</option>
+              <option value="wearables">Wearables</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="add-price">Price (ETB)</label>
+              <input type="number" id="add-price" required min="100" placeholder="e.g. 45000">
+            </div>
+            <div class="form-group">
+              <label for="add-stock">Stock Quantity</label>
+              <input type="number" id="add-stock" required min="0" placeholder="e.g. 15">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="add-desc">Description</label>
+            <textarea id="add-desc" required placeholder="Product specifications, warranty details..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="add-image">Product Image Template</label>
+            <select id="add-image" required>
+              <option value="images/laptop.jpg">Laptop Mockup</option>
+              <option value="images/smartphone.jpg">Smartphone Mockup</option>
+              <option value="images/headphones.jpg">Headphones Mockup</option>
+              <option value="images/smartwatch.jpg">Smartwatch Mockup</option>
+              <option value="images/smarthome.jpg">Smart Home Mockup</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-payment-btn">Add Product to Catalog</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="app.js"></script>
+</body>
+</html>

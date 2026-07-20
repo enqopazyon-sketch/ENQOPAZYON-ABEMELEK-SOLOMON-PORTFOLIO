@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adugna Finance - Premium Dark Wealth & Budget Dashboard</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="A premium dark-themed wealth tracking dashboard with automatic transaction alerts, budgeting tools, and secure banking-grade data pipelines.">
+  <meta name="keywords" content="finance, wealth tracking, budgeting, secure banking, Telebirr, CBE">
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- 1. VAULT-DECRYPTION PRELOADER -->
+  <!-- ========================================== -->
+  <div id="vault-preloader" class="vault-preloader">
+    <div class="preloader-content">
+      <div class="vault-lock-container">
+        <!-- SVG Vault Dial -->
+        <svg class="vault-dial" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="var(--primary-gold)" stroke-width="2" />
+          <circle cx="50" cy="50" r="35" fill="none" stroke="var(--primary-gold)" stroke-width="1.5" stroke-dasharray="4, 4" />
+          <circle cx="50" cy="50" r="25" fill="none" stroke="var(--primary-gold)" stroke-width="3" />
+          <line x1="50" y1="5" x2="50" y2="15" stroke="var(--primary-gold)" stroke-width="3" />
+          <line x1="50" y1="85" x2="50" y2="95" stroke="var(--primary-gold)" stroke-width="3" />
+          <line x1="5" y1="50" x2="15" y2="50" stroke="var(--primary-gold)" stroke-width="3" />
+          <line x1="85" y1="50" x2="95" y2="50" stroke="var(--primary-gold)" stroke-width="3" />
+          <!-- Dial ticks -->
+          <path d="M 50 50 L 50 25 M 50 50 L 68 38 M 50 50 L 75 50 M 50 50 L 68 62" stroke="var(--primary-gold)" stroke-width="2" class="dial-hands" />
+          <circle cx="50" cy="50" r="8" fill="var(--bg-deep)" stroke="var(--primary-gold)" stroke-width="2" />
+        </svg>
+      </div>
+      <h1 class="brand-title">ADUGNA FINANCE</h1>
+      <p class="brand-subtitle">Secure Wealth Telemetry</p>
+      
+      <!-- Progress Loader -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-bar-fill" id="preloader-progress"></div>
+      </div>
+      <div class="progress-status">
+        <span id="preloader-percent">0%</span>
+        <span id="preloader-phrase" class="text-glow">Initializing cryptographic handshake...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. MAIN APPLICATION CONTAINER -->
+  <!-- ========================================== -->
+  <div id="app-workspace" class="app-workspace" style="opacity: 0; transform: scale(0.96);">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar-nav glass-card">
+      <div class="sidebar-brand">
+        <div class="brand-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <h2>Adugna Finance</h2>
+          <span>Wealth Dashboard</span>
+        </div>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item active" data-target="dashboard" id="nav-btn-dashboard">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </li>
+        <li class="nav-item" data-target="budgeting" id="nav-btn-budgeting">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Budgeting Console</span>
+        </li>
+        <li class="nav-item" data-target="security" id="nav-btn-security">
+          <i class="fa-solid fa-server"></i>
+          <span>Security Pipelines</span>
+          <span class="active-badge" id="alerts-badge">OK</span>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <span class="status-indicator online"></span>
+        <span>AES-256 Encrypted</span>
+      </div>
+    </aside>
+
+    <!-- Main Viewport Area -->
+    <main class="main-viewport">
+      <!-- Header -->
+      <header class="viewport-header glass-card">
+        <div class="header-left">
+          <h1 id="viewport-title">Net Worth Analysis</h1>
+          <p id="viewport-subtitle">Real-time telemetry of asset allocations</p>
+        </div>
+        <div class="header-right">
+          <!-- Quick Transfer Trigger -->
+          <button class="transfer-trigger-btn glass-card" id="open-transfer-btn">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Transfer Funds</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEWPORT TABS -->
+      <div class="tabs-container">
+        
+        <!-- ========================================== -->
+        <!-- TAB 1: WEALTH DASHBOARD -->
+        <!-- ========================================== -->
+        <section class="viewport-tab active" id="tab-dashboard">
+          <!-- Metric Stat Cards Grid -->
+          <div class="metrics-grid">
+            <div class="stat-card glass-card">
+              <div class="stat-header">
+                <span>NET WORTH</span>
+                <i class="fa-solid fa-scale-balanced text-gold"></i>
+              </div>
+              <h3 id="net-worth-val">ETB 1,420,500.00</h3>
+              <span class="stat-trend positive"><i class="fa-solid fa-caret-up"></i> +8.2% this quarter</span>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-header">
+                <span>BANK BALANCE (CBE/TELEBIRR)</span>
+                <i class="fa-solid fa-building-columns text-emerald"></i>
+              </div>
+              <h3 id="bank-balance-val">ETB 254,800.00</h3>
+              <span class="stat-trend" id="balance-sub-label">Liquidity level optimal</span>
+            </div>
+            <div class="stat-card glass-card">
+              <div class="stat-header">
+                <span>INVESTMENT HOLDINGS</span>
+                <i class="fa-solid fa-chart-line-up text-cyan"></i>
+              </div>
+              <h3 id="investments-val">ETB 1,165,700.00</h3>
+              <span class="stat-trend positive"><i class="fa-solid fa-caret-up"></i> Real estate & bonds</span>
+            </div>
+          </div>
+
+          <!-- Split Layout: Analytics Chart & Ledger -->
+          <div class="dashboard-split-grid">
+            <!-- Left Side: Wealth Trajectory Chart -->
+            <div class="chart-card glass-card">
+              <div class="chart-header-row">
+                <h3>Asset Allocation Breakdown</h3>
+                <div class="chart-legend">
+                  <span class="legend-dot bank"></span> Liquid Bank
+                  <span class="legend-dot invest"></span> Investments
+                </div>
+              </div>
+              
+              <!-- Custom Interactive Mock Chart SVG -->
+              <div class="mock-chart-container">
+                <svg class="analytics-chart-svg" viewBox="0 0 500 220">
+                  <defs>
+                    <linearGradient id="chart-grad-bank" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--primary-emerald)" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="var(--primary-emerald)" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="chart-grad-invest" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--primary-gold)" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="var(--primary-gold)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  
+                  <!-- Grid Lines -->
+                  <line x1="30" y1="20" x2="480" y2="20" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                  <line x1="30" y1="70" x2="480" y2="70" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                  <line x1="30" y1="120" x2="480" y2="120" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                  <line x1="30" y1="170" x2="480" y2="170" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                  
+                  <!-- Trajectory Areas -->
+                  <path d="M 30,170 Q 120,150 210,130 T 390,110 T 480,95 L 480,200 L 30,200 Z" fill="url(#chart-grad-invest)" />
+                  <path d="M 30,170 Q 120,160 210,145 T 390,130 T 480,115 L 480,200 L 30,200 Z" fill="url(#chart-grad-bank)" />
+                  
+                  <!-- Trajectory Lines -->
+                  <path d="M 30,170 Q 120,150 210,130 T 390,110 T 480,95" fill="none" stroke="var(--primary-gold)" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M 30,170 Q 120,160 210,145 T 390,130 T 480,115" fill="none" stroke="var(--primary-emerald)" stroke-width="2.5" stroke-linecap="round" />
+
+                  <!-- Interactive Data Points -->
+                  <circle cx="210" cy="130" r="5" fill="var(--primary-gold)" class="chart-dot" />
+                  <circle cx="210" cy="145" r="5" fill="var(--primary-emerald)" class="chart-dot" />
+                  <circle cx="480" cy="95" r="5" fill="var(--primary-gold)" class="chart-dot" />
+                  <circle cx="480" cy="115" r="5" fill="var(--primary-emerald)" class="chart-dot" />
+                  
+                  <!-- Labels -->
+                  <text x="30" y="215" fill="var(--text-muted)" font-size="9" text-anchor="middle">Jan</text>
+                  <text x="120" y="215" fill="var(--text-muted)" font-size="9" text-anchor="middle">Feb</text>
+                  <text x="210" y="215" fill="var(--text-muted)" font-size="9" text-anchor="middle">Mar</text>
+                  <text x="300" y="215" fill="var(--text-muted)" font-size="9" text-anchor="middle">Apr</text>
+                  <text x="390" y="215" fill="var(--text-muted)" font-size="9" text-anchor="middle">May</text>
+                  <text x="480" y="215" fill="var(--text-muted)" font-size="9" text-anchor="middle">Jun</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Right Side: Transactions history ledger -->
+            <div class="ledger-card glass-card">
+              <div class="ledger-header">
+                <h3>Transactions Ledger</h3>
+                <div class="filter-pills">
+                  <button class="filter-pill active" data-filter="all">All</button>
+                  <button class="filter-pill" data-filter="income">Income</button>
+                  <button class="filter-pill" data-filter="expense">Expense</button>
+                </div>
+              </div>
+              <div class="ledger-list-wrapper">
+                <ul class="ledger-list" id="ledger-list">
+                  <!-- Dynamically populated transaction cards -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: BUDGETING CONSOLE -->
+        <!-- ========================================== -->
+        <section class="viewport-tab" id="tab-budgeting">
+          <div class="budget-layout-grid">
+            
+            <!-- Left Side: Active Budget trackers -->
+            <div class="budget-trackers-card glass-card">
+              <div class="card-header-row">
+                <h3>Active Budget Allocations</h3>
+                <p class="section-desc">Budget utilization monitors updating in real-time based on transaction ledger records.</p>
+              </div>
+              
+              <div class="budget-trackers-list" id="budget-trackers-list">
+                <!-- Dynamically populated budget progress cards -->
+              </div>
+            </div>
+
+            <!-- Right Side: Budget editor form -->
+            <div class="budget-editor-card glass-card">
+              <h3>Budget Settings Console</h3>
+              <p class="section-desc">Modify spending ceilings or allocate funds for new budgeting categories.</p>
+              
+              <form id="budget-settings-form">
+                <div class="form-group">
+                  <label for="budget-category-select">Select Category</label>
+                  <select id="budget-category-select" required>
+                    <option value="Food & Groceries">Food & Groceries</option>
+                    <option value="Rent & Housing">Rent & Housing</option>
+                    <option value="Tech & Electronics">Tech & Electronics</option>
+                    <option value="Entertainment">Entertainment</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="budget-limit-input">Ceiling Limit (ETB)</label>
+                  <input type="number" id="budget-limit-input" required min="500" placeholder="e.g. 15000">
+                </div>
+                <button type="submit" class="submit-budget-btn">Apply Spending Ceiling</button>
+              </form>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- TAB 3: SECURITY CONSOLE -->
+        <!-- ========================================== -->
+        <section class="viewport-tab" id="tab-security">
+          <div class="security-layout-grid">
+            <!-- Left side: Pipe details -->
+            <div class="pipe-details-card glass-card">
+              <h3>Secure Data Pipelines</h3>
+              <p class="section-desc">Adugna Finance employs military-grade AES-256 data envelope encryption to secure banking queries.</p>
+              
+              <div class="security-telemetry-grid">
+                <div class="security-stat glass-card">
+                  <span>API SSL HANDSHAKE</span>
+                  <strong class="text-emerald" id="ssl-status">ACTIVE</strong>
+                </div>
+                <div class="security-stat glass-card">
+                  <span>ENCRYPTION DECRYPTION</span>
+                  <strong class="text-gold">AES-256 GCM</strong>
+                </div>
+                <div class="security-stat glass-card">
+                  <span>LEDGER SYNCHRONIZATION</span>
+                  <strong class="text-cyan" id="ledger-sync-val">100% SECURE</strong>
+                </div>
+              </div>
+
+              <!-- Pipe schematic diagram SVG -->
+              <div class="schematic-container">
+                <svg class="schematic-svg" viewBox="0 0 400 120">
+                  <rect x="10" y="35" width="80" height="50" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1.5" />
+                  <text x="50" y="65" text-anchor="middle" fill="var(--text-muted)" font-size="9" font-weight="700">LOCAL CLIENT</text>
+
+                  <!-- Pipe lines -->
+                  <path d="M 90,60 L 310,60" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="4" stroke-dasharray="10, 10" class="pipe-flow" />
+                  <path d="M 90,60 L 310,60" fill="none" stroke="var(--primary-gold)" stroke-width="1.5" stroke-dasharray="6, 120" class="pipe-flow-glow" />
+
+                  <rect x="310" y="35" width="80" height="50" rx="6" fill="rgba(0, 230, 118, 0.05)" stroke="var(--primary-emerald)" stroke-width="1.5" />
+                  <text x="350" y="60" text-anchor="middle" fill="#FFF" font-size="9" font-weight="700">SECURE BANK</text>
+                  <text x="350" y="72" text-anchor="middle" fill="var(--primary-emerald)" font-size="8" font-weight="700">GATEWAY</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Right side: Security logs terminal -->
+            <div class="security-terminal-card glass-card">
+              <h3>Cryptographic Ledger Stream</h3>
+              <p class="section-desc">Active hash validations and transaction verification handshakes inside the pipeline.</p>
+              <div class="terminal-box" id="security-terminal">
+                <div class="terminal-placeholder">
+                  <i class="fa-solid fa-terminal"></i>
+                  <p>Awaiting security pipeline sync...</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- 4. QUICK TRANSFER MODAL -->
+    <!-- ========================================== -->
+    <div class="modal-overlay" id="transfer-modal">
+      <div class="modal-card glass-card">
+        <div class="modal-header">
+          <div class="modal-brand">
+            <i class="fa-solid fa-paper-plane text-emerald"></i>
+            <h3>Quick Fund Transfer</h3>
+          </div>
+          <button class="close-modal-btn" onclick="closeModal('transfer')"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <form id="transfer-funds-form">
+            <div class="form-group">
+              <label for="transfer-recipient">Recipient Name</label>
+              <input type="text" id="transfer-recipient" required placeholder="e.g. Aron Hailu">
+            </div>
+            <div class="form-group">
+              <label for="transfer-bank">Destination Bank</label>
+              <select id="transfer-bank" required>
+                <option value="Commercial Bank of Ethiopia (CBE)">Commercial Bank of Ethiopia (CBE)</option>
+                <option value="Telebirr Wallet">Telebirr Wallet</option>
+                <option value="Cooperative Bank of Oromia">Cooperative Bank of Oromia</option>
+                <option value="Awash Bank">Awash Bank</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="transfer-account">Account / Phone Number</label>
+              <input type="text" id="transfer-account" required placeholder="e.g. 1000293849182 or 0912...">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="transfer-amount">Amount (ETB)</label>
+                <input type="number" id="transfer-amount" required min="10" placeholder="e.g. 2500">
+              </div>
+              <div class="form-group">
+                <label for="transfer-category">Budget Category</label>
+                <select id="transfer-category" required>
+                  <option value="Food & Groceries">Food & Groceries</option>
+                  <option value="Rent & Housing">Rent & Housing</option>
+                  <option value="Tech & Electronics">Tech & Electronics</option>
+                  <option value="Entertainment">Entertainment</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-transfer-btn">
+              <i class="fa-solid fa-shield-halved"></i> Authorize Secure Transfer
+            </button>
+          </form>
+
+          <!-- Processing Overlay inside modal -->
+          <div class="processing-overlay" id="transfer-processing" style="display: none;">
+            <div class="progress-spinner"></div>
+            <h4 class="text-glow">Signing Ledger Blocks...</h4>
+            <p>Dispatched payload to blockchain ledger verify pipeline.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 5. TRANSFER ALERT NOTIFICATION NOTIFIER -->
+    <!-- ========================================== -->
+    <div class="notification-container" id="notification-container">
+      <!-- Alerts pop here -->
+    </div>
+
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="app.js"></script>
+</body>
+</html>
