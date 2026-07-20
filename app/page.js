@@ -75,8 +75,8 @@ export default function Home() {
     };
 
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "-80px 0px 0px 0px" // Header offset
+      threshold: 0.01,
+      rootMargin: "100px 0px 100px 0px"
     };
 
     const observer = new IntersectionObserver(handleObserver, observerOptions);
@@ -87,7 +87,21 @@ export default function Home() {
       }
     });
 
-    return () => observer.disconnect();
+    // Fallback reveal for mobile & Telegram WebApp frames
+    const fallbackTimer = setTimeout(() => {
+      Object.values(sectionRefs).forEach(ref => {
+        if (ref.current) {
+          ref.current.classList.add('revealed');
+        }
+      });
+      setSkillsVisible(true);
+      setRoadmapVisible(true);
+    }, 500);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   // 3. Handle Form Submit

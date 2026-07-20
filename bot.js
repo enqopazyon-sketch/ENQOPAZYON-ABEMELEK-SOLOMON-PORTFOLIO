@@ -131,10 +131,14 @@ const sendWelcomeMessage = async (chatId, firstName) => {
     const text = `👋 *እንኳን ወደ ENQOPAZYON {dev} ቦት በደህና መጡ, ${firstName}!*
 እኛ ዘመናዊ ዌብሳይቶችን፣ የቴሌግራም ቦቶችን እና የሞባይል መተግበሪያዎችን (Apps) ለድርጅትዎ እንሰራለን።
 
+🌟 *የሰራኋቸውን ፕሮጀክቶች፣ ስራዎች እና ልምዶቼን በፎቶ እና በዲሞ ለመመልከት ከታች በስተግራ ያለውን \`🌐 {dev} web\` (ወይም Menu) አዝራር ይጫኑ!*
+
 👋 *Welcome to ENQOPAZYON {dev} Concierge, ${firstName}!*
 We build premium websites, custom Telegram bots, and responsive mobile applications directly for your business.
 
-👇 *ከታች ካሉት አዝራሮች በመምረጥ ዝርዝሩን ማየት ይችላሉ (Choose an option below):*`;
+🌟 *To explore our full portfolio, live interactive project demos, and experience, tap the \`🌐 {dev} web\` button at the bottom left!*
+
+👇 *ከታች ካሉት አዝራሮች በመምረጥም የዋጋ ክፍፍሎችን ማየት ይችላሉ (Choose an option below):*`;
 
     await telegramApi("sendMessage", {
         chat_id: chatId,

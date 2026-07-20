@@ -1625,17 +1625,42 @@ footer {
         right: auto !important;
     }
     
-    .projects-grid {
-        grid-template-columns: 1fr;
+    /* Mobile & Telegram WebApp Optimization */
+    .reveal-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: opacity 0.3s ease !important;
     }
-    
+
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .project-card {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .certificates-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px;
+    }
+
     .contact-wrapper {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: 1fr !important;
+        gap: 30px;
     }
     
     section {
-        padding: 50px 0 30px 0;
+        padding: 40px 16px 30px 16px !important;
+        box-sizing: border-box;
     }
 }
 
