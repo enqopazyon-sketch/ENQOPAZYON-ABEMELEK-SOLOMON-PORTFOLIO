@@ -120,11 +120,50 @@ const userStates = {};
 const replyKeyboard = {
     keyboard: [
         [{ text: "💻 Website Packages" }, { text: "🤖 Bot Packages" }],
-        [{ text: "📱 Mobile App Packages" }, { text: "💡 Pitch Tip (ጠቃሚ ምክር)" }],
+        [{ text: "📱 Mobile App Packages" }, { text: "❓ Q&A (ጥያቄና መልስ)" }],
         [{ text: "📞 Request Consultation" }]
     ],
     resize_keyboard: true,
     one_time_keyboard: false
+};
+
+// 7 Interactive FAQ Data Store
+const faqs = {
+    "1": {
+        q: "1. ዌብሳይት ለካፌ/ሬስቶራንቴ",
+        title: "❓ *1. ዌብሳይት ለካፌ፣ ሬስቶራንት ወይም ጁስ ቤቴ ምን ጥቅም ይሰጠኛል?*",
+        text: "> 💡 አብዛኛው ሰው ቦታ ከመምረጡ በፊት ቲክቶክ ወይም ኢንስታግራም ላይ ያያል። ዌብሳይት ሲኖራችሁ ግን ደንበኛው በቀጥታ የምግብና መጠጥ ዝርዝር (Menu) ማየት፣ ዋጋ ማወዳደር፣ አድራሻችሁን ማግኘት እና ወደ ካፌ/ሬስቶራንታችሁ በቀጥታ መምጣት ይችላል።"
+    },
+    "2": {
+        q: "2. የ QR Code ሜኑ ጥቅም",
+        title: "❓ *2. የ QR Code ሜኑ የህትመት ወጪን እንዴት ያስቀራል?*",
+        text: "> 💡 በየጠረጴዛው ላይ የሚቀመጥ *𝗤🇷 𝗖𝗼𝗱𝗲* በማዘጋጀት ደንበኞች በስልካቸው ካሜራ ብቻ በማንሳት ሜኑውን እንዲያዩ ማድረግ ይቻላል። ይህም ዋጋ ወይም ምግብ በተቀየረ ቁጥር የሚወጣውን የወረቀት ህትመት ወጪ ሙሉ በሙሉ ያስቀራል።"
+    },
+    "3": {
+        q: "3. የቴሌግራም ቦት ጥቅሞች",
+        title: "❓ *3. የቴሌግራም ቦት (Telegram Bot) ለንግዴ ምን አይነት ጥቅም ይሰጣል?*",
+        text: "> 💡 ቴሌግራም ቦት 24 ሰዓት ሙሉ ለደንበኞችዎ አውቶማቲክ ምላሽ ይሰጣል፣ የዕቃዎች ካታሎግ ያሳያል፣ የቴሌብር/ቻፓ ክፍያዎችን ይቀበላል፣ እንዲሁም የደንበኞችን ስምና ስልክ ቁጥር (Customer Database) በራስ-ሰር ሰብስቦ ለቀጣይ ማስታወቂያዎች ይመዘግባል።"
+    },
+    "4": {
+        q: "4. የዌብሳይትና ቦት ዋጋዎች",
+        title: "❓ *4. የዌብሳይት እና የቴሌግራም ቦት ስራ ዋጋ ስንት ነው?*",
+        text: "> 💡 • 🥉 *Basic Website / Bot:* 15,000 – 25,000 ETB\n> • 🥈 *Standard Website / E-Commerce Bot:* 35,000 – 60,000 ETB\n> • 🥇 *Advanced System / CRM Bot:* 50,000 – 120,000+ ETB"
+    },
+    "5": {
+        q: "5. ዋጋና ፎቶ በራሴ መቀየር",
+        title: "❓ *5. ዌብሳይቱ ወይም ቦቱ ላይ ዋጋና የምግብ ፎቶዎችን በራሴ መቀየር እችላለሁ?*",
+        text: "> 💡 አዎ! በ Standard እና Premium ፓኬጆቻችን ላይ ከስልክዎ ወይም ኮምፒውተርዎ በቀላሉ ዋጋዎችን፣ አዳዲስ ምግቦችን እና ፎቶዎችን መቀየር የሚችሉበት የአድሚን ፓናል (CMS Panel) ይካተታል።"
+    },
+    "6": {
+        q: "6. ደንበኛ ሲያዝዝ ማሳወቂያ",
+        title: "❓ *6. ደንበኛ ሲያዝዝ ወይም መልእክት ሲልክ እንዴት ይደርሰኛል?*",
+        text: "> 💡 ደንበኛ ከዌብሳይቱ ወይም ከቴሌግራም ቦቱ ላይ ሲያዝዝ፣ ሙሉ ስሙ፣ ስልኩ እና የትዕዛዙ ዝርዝር ወዲያውኑ ወደ እርስዎ የግል Telegram አድሚን አካውንት በደወል ድምፅ ይደርሰዎታል።"
+    },
+    "7": {
+        q: "7. የስራ ጊዜና የጥገና ድጋፍ",
+        title: "❓ *7. ስራው ለማለቅ ምን ያህል ጊዜ ይወስዳል? ነጻ የጥገና ድጋፍ አለው?*",
+        text: "> 💡 እንደ ፕሮጀክቱ አይነት ከ 3 እስከ 7 ቀናት ባለው ጊዜ ውስጥ ተጠናቆ ይሰጣል። በተጨማሪም ከስራው በኋላ ከ 3 እስከ 6 ወራት ነጻ የቴክኒክ ጥገና ድጋፍ (Free Technical Support) እንሰጣለን።"
+    }
 };
 
 const sendWelcomeMessage = async (chatId, firstName) => {
@@ -138,13 +177,66 @@ We build premium websites, custom Telegram bots, and responsive mobile applicati
 
 🌟 *To explore our full portfolio, live interactive project demos, and experience, tap the \`🌐 {dev} web\` button at the bottom left!*
 
-👇 *ከታች ካሉት አዝራሮች በመምረጥም የዋጋ ክፍፍሎችን ማየት ይችላሉ (Choose an option below):*`;
+👇 *ከታች ካሉት አዝራሮች በመምረጥም የዋጋ ክፍፍሎችንና ጥያቄዎችን ማየት ይችላሉ (Choose an option below):*`;
 
     await telegramApi("sendMessage", {
         chat_id: chatId,
         text: text,
         parse_mode: 'Markdown',
         reply_markup: replyKeyboard
+    });
+};
+
+const sendFaqMenu = async (chatId, messageId = null) => {
+    const text = `❓ *ተደጋግመው የሚጠየቁ ጥያቄዎችና መልሶች (Q&A)*\n\nለመመልከት የሚፈልጉትን ጥያቄ ይጫኑ (Select a question below to read the answer):`;
+    
+    const inlineKeyboard = {
+        inline_keyboard: [
+            [{ text: "1. ዌብሳይት ለካፌ/ሬስቶራንቴ", callback_data: "faq_1" }],
+            [{ text: "2. የ QR Code ሜኑ ጥቅም", callback_data: "faq_2" }],
+            [{ text: "3. የቴሌግራም ቦት ጥቅሞች", callback_data: "faq_3" }],
+            [{ text: "4. የዌብሳይትና ቦት ዋጋዎች", callback_data: "faq_4" }],
+            [{ text: "5. ዋጋና ፎቶ በራሴ መቀየር", callback_data: "faq_5" }],
+            [{ text: "6. ደንበኛ ሲያዝዝ ማሳወቂያ", callback_data: "faq_6" }],
+            [{ text: "7. የስራ ጊዜና የጥገና ድጋፍ", callback_data: "faq_7" }]
+        ]
+    };
+
+    if (messageId) {
+        await telegramApi("editMessageText", {
+            chat_id: chatId,
+            message_id: messageId,
+            text: text,
+            parse_mode: 'Markdown',
+            reply_markup: inlineKeyboard
+        });
+    } else {
+        await telegramApi("sendMessage", {
+            chat_id: chatId,
+            text: text,
+            parse_mode: 'Markdown',
+            reply_markup: inlineKeyboard
+        });
+    }
+};
+
+const sendFaqAnswer = async (chatId, messageId, faqKey) => {
+    const faq = faqs[faqKey];
+    if (!faq) return;
+
+    const text = `${faq.title}\n\n${faq.text}`;
+    const inlineKeyboard = {
+        inline_keyboard: [
+            [{ text: "🔙 ወደ ጥያቄዎች ዝርዝር (Back to Q&A List)", callback_data: "menu_faq" }]
+        ]
+    };
+
+    await telegramApi("editMessageText", {
+        chat_id: chatId,
+        message_id: messageId,
+        text: text,
+        parse_mode: 'Markdown',
+        reply_markup: inlineKeyboard
     });
 };
 
@@ -237,21 +329,6 @@ const sendAppPackages = async (chatId) => {
     });
 };
 
-const sendPitchTip = async (chatId) => {
-    const text = `💡 *ለካፌ/ሬስቶራንት ባለቤቶች ስታስረዳ ልታጎላው የሚገባ ነጥብ (Pitch Tip)*
-
-"አብዛኛው ሰው ካፌ ወይም ጁስ ቤት ከመሄዱ በፊት ቲክቶክ ወይም ኢንስታግራም ላይ አይቶ ነው። ነገር ግን ዌብሳይት ሲኖራችሁ ደንበኛው በቀጥታ ሜኑ ማየት፣ ዋጋ ማወዳደር እና መምጣት ይችላል።
-
-በተለይ ሜኑ በ *𝗤🇷 𝗖𝗼𝗱𝗲* ጠረጴዛ ላይ በማስቀመጥ የህትመት ወጪን ማስቀረት ትችላላችሁ።"`;
-
-    await telegramApi("sendMessage", {
-        chat_id: chatId,
-        text: text,
-        parse_mode: 'Markdown',
-        reply_markup: replyKeyboard
-    });
-};
-
 const initiateOrder = async (chatId, type) => {
     userStates[chatId] = { state: "awaiting_lead_details", type: type };
     
@@ -278,11 +355,19 @@ _Please type and send your *Name*, *Phone Number*, and a brief *Project Descript
 const handleCallbackQuery = async (query) => {
     const callbackData = query.data;
     const chatId = query.message.chat.id;
+    const messageId = query.message.message_id;
     const queryId = query.id;
 
     await telegramApi("answerCallbackQuery", { callback_query_id: queryId });
 
-    if (callbackData.startsWith("order_")) {
+    if (callbackData === "menu_faq") {
+        await sendFaqMenu(chatId, messageId);
+    }
+    else if (callbackData.startsWith("faq_")) {
+        const faqKey = callbackData.replace("faq_", "");
+        await sendFaqAnswer(chatId, messageId, faqKey);
+    }
+    else if (callbackData.startsWith("order_")) {
         const type = callbackData.replace("order_", "");
         await initiateOrder(chatId, type);
     } 
@@ -320,8 +405,8 @@ const handleMessage = async (msg) => {
         await sendAppPackages(chatId);
         return;
     }
-    if (text === "💡 Pitch Tip (ጠቃሚ ምክር)") {
-        await sendPitchTip(chatId);
+    if (text === "❓ Q&A (ጥያቄና መልስ)") {
+        await sendFaqMenu(chatId);
         return;
     }
     if (text === "📞 Request Consultation") {
